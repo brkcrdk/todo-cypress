@@ -1,16 +1,17 @@
-import Document, { Head, Main, NextScript, Html } from 'next/document';
+import Document from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
-import { resetServerContext } from 'react-beautiful-dnd';
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const sheet = new ServerStyleSheet();
     const originalRenderPage = ctx.renderPage;
-    resetServerContext();
+
     try {
       ctx.renderPage = () =>
         originalRenderPage({
-          enhanceApp: App => props => sheet.collectStyles(<App {...props} />),
+          enhanceApp: (App) => (props) =>
+            sheet.collectStyles(<App {...props} />),
         });
+
       const initialProps = await Document.getInitialProps(ctx);
       return {
         ...initialProps,
@@ -21,22 +22,8 @@ export default class MyDocument extends Document {
           </>
         ),
       };
-    } catch (error) {
-      console.error(error);
     } finally {
       sheet.seal();
     }
-  }
-
-  render() {
-    return (
-      <Html>
-        <Head />
-        <body>
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    );
   }
 }
