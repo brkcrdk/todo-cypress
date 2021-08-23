@@ -1,7 +1,8 @@
 const todoStore = (set, get) => {
   return {
-    todos: [1, 2, 3],
+    todos: [],
     addTodo: (todo) => set({ todos: get().todos.concat(todo) }),
+    clearAll: () => set({ todos: [] }),
   };
 };
 
