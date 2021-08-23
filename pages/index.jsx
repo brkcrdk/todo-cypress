@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { Input, Message } from 'semantic-ui-react';
+import useStoreMacro from '@90pixel/zustand.macro';
 
 function Home() {
   const [searchValue, setSearchValue] = useState('');
+  const { todos, addTodo } = useStoreMacro();
+
   return (
     <Container>
       <Header as="h3">Yapılacak Listesi</Header>
@@ -13,13 +16,17 @@ function Home() {
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
         />
-        <Button>Ekle</Button>
+        <Button onClick={() => addTodo(14)}>Ekle</Button>
       </Controllers>
-      <CustomMessage
-        warning
-        header="Yapacak bir işin yok!"
-        content="Bir iş ekleyerek güne başla."
-      />
+      {todos.length ? (
+        todos.map((todo) => <li key={todo}>todo</li>)
+      ) : (
+        <CustomMessage
+          warning
+          header="Yapacak bir işin yok!"
+          content="Bir iş ekleyerek güne başla."
+        />
+      )}
     </Container>
   );
 }
