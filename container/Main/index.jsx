@@ -1,41 +1,20 @@
-import { useState } from 'react';
 import styled from 'styled-components';
-import { Button, Radio } from 'semantic-ui-react';
 import useStoreMacro from '@90pixel/zustand.macro';
 import { TodoContainer, TodoElement, Message } from 'components';
-
+import { Header } from 'semantic-ui-react';
 import AddTodoSection from './AddTodoSection';
+import Controllers from './Controllers';
 
 function Main() {
-  const { todos, clearAll } = useStoreMacro();
-  const [type, setType] = useState('all');
+  const { todos } = useStoreMacro();
 
   return (
     <Container>
-      <Header as="h3">Yapılacak Listesi</Header>
+      <Header as="h2">Yapılacak Listesi</Header>
       <AddTodoSection />
-      {!!todos.length && (
-        <ToggleContainer>
-          <Radio
-            label="Hepsi"
-            checked={type === 'all'}
-            onChange={() => setType('all')}
-          />
-          <Radio
-            label="Yapılacaklar"
-            checked={type === 'todos'}
-            onChange={() => setType('todos')}
-          />
-          <Radio
-            label="Yapılmışlar"
-            checked={type === 'completed'}
-            onChange={() => setType('completed')}
-          />
-          <Button onClick={clearAll}>Temizle</Button>
-        </ToggleContainer>
-      )}
+      {!!todos.length && <Controllers />}
       {!todos?.length ? (
-        <CustomMessage
+        <Message
           warning
           header="Yapacak bir işin yok!"
           content="Bir iş ekleyerek güne başla."
@@ -60,17 +39,4 @@ const Container = styled.div`
   height: 100vh;
   width: 500px;
   padding-top: 72px;
-`;
-
-const Header = styled.h2``;
-
-const ToggleContainer = styled.ul`
-  margin: 12px 0;
-  .radio {
-    margin: 0 12px;
-  }
-`;
-
-const CustomMessage = styled(Message)`
-  text-align: center;
 `;
