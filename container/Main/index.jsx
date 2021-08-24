@@ -10,17 +10,20 @@ function Main() {
 
   return (
     <Container>
-      <Header as="h2">Yapılacak Listesi</Header>
+      <Header data-cy="todo-header" as="h2">
+        Yapılacak Listesi
+      </Header>
       <AddTodoSection />
       {!!todos.length && <Controllers />}
       {!todos?.length ? (
         <Message
+          data-cy="empty-message"
           warning
           header="Yapacak bir işin yok!"
           content="Bir iş ekleyerek güne başla."
         />
       ) : (
-        <TodoContainer>
+        <TodoContainer data-cy="todo-container">
           {todos?.map((todo) => (
             <TodoElement key={todo} label={`todo-${todo}`} />
           ))}
