@@ -8,7 +8,7 @@ function AddTodoSection() {
   const { addTodo } = useStoreMacro();
 
   return (
-    <AddTodoContainer>
+    <AddTodoContainer data-cy="add-todo-section">
       <CustomInput
         placeholder="Bir iş ekle..."
         value={todoVal}

@@ -8,7 +8,7 @@ function Controllers() {
   const [type, setType] = useState('all');
 
   return (
-    <StyledControllers>
+    <StyledControllers data-cy="todo-controllers">
       <Radio
         label="Hepsi"
         checked={type === 'all'}
