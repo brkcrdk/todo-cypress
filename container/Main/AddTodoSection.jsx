@@ -13,6 +13,11 @@ function AddTodoSection() {
         placeholder="Bir iş ekle..."
         value={todoVal}
         onChange={(e) => setTodoVal(e.target.value)}
+        onKeyPress={({ key }) => {
+          if (key === 'Enter' && todoVal) {
+            addTodo(todoVal);
+          }
+        }}
         data-cy="todo-input"
       />
       <CustomButton
