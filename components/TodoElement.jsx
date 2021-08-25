@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import { Checkbox, Button } from 'semantic-ui-react';
 
-function TodoElement({ label, isDone }) {
+function TodoElement({ label, isDone, ...props }) {
   return (
-    <ListItem>
+    <ListItem {...props}>
       <Button icon="trash" color="red" size="mini" />
       <CustomCheckbox primary label={label} isDone={isDone} checked={isDone} />
     </ListItem>
