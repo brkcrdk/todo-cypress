@@ -25,7 +25,11 @@ function Main() {
       ) : (
         <TodoContainer data-cy="todo-container">
           {todos?.map((todo) => (
-            <TodoElement key={todo} label={`todo-${todo}`} />
+            <TodoElement
+              data-cy="todo-element"
+              key={`todo-${todo}`}
+              label={todo}
+            />
           ))}
         </TodoContainer>
       )}
