@@ -13,8 +13,14 @@ function AddTodoSection() {
         placeholder="Bir iş ekle..."
         value={todoVal}
         onChange={(e) => setTodoVal(e.target.value)}
+        data-cy="todo-input"
       />
-      <CustomButton primary onClick={() => addTodo(14)}>
+      <CustomButton
+        primary
+        onClick={() => addTodo(todoVal)}
+        data-cy="todo-add-btn"
+        disabled={!todoVal}
+      >
         Ekle
       </CustomButton>
     </AddTodoContainer>
