@@ -14,4 +14,16 @@ describe('Todo Elementi', () => {
       cy.wrap(item).should('not.contain.text', testTodos[2]);
     });
   });
+
+  it('Element işaretlendiğinde üstü çizilmeli ve checkbox işaretlenmiş olmalı', () => {
+    cy.get('[data-cy=todo-checkbox]').eq(1).click();
+    cy.get('[data-cy=todo-checkbox]')
+      .eq(1)
+      .children('input')
+      .should('be.checked');
+    cy.get('[data-cy=todo-checkbox]')
+      .eq(1)
+      .children('label')
+      .should('have.css', 'color', 'rgb(204, 204, 204)');
+  });
 });
