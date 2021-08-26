@@ -1,19 +1,14 @@
 describe('Eğer input boşsa todo kayıt edilememeli', () => {
-  beforeEach(() => cy.visit('/'));
-
-  it('Eğer input boşsa button disabled olmalı', () => {
-    cy.get('[data-cy=todo-add-btn]').should('have.class', 'disabled');
-    cy.get('[data-cy=todo-input]').type('deneme yazısı');
-    cy.get('[data-cy=todo-add-btn]').should('not.have.class', 'disabled');
-    cy.get('[data-cy=todo-input]').clear();
-    cy.get('[data-cy=todo-add-btn]').should('have.class', 'disabled');
+  beforeEach(() => {
+    const todos = ['Deneme', 'İkinci deneme yazısı', 'Bir başka deneme daha'];
+    cy.visit('/');
+    todos.forEach((t) => {
+      cy.get('[data-cy=todo-input]').type(t);
+      cy.get('[data-cy=todo-add-btn]').click();
+    });
   });
 
-  it('Eğer entera basıldığında input boşsa todo eklenmemeli', () => {
-    const expectedText = 'enter deneme yazısı';
-    cy.get('[data-cy=todo-input]').type(`${expectedText}{enter}`);
-    cy.get('[data-cy=todo-element]').should('have.text', expectedText);
-    cy.get('[data-cy=todo-input]').clear().type('{enter}');
-    cy.get('[data-cy=todo-container]').children().should('have.length', 1);
+  it('Varsayılan seçili opsiyon hepsi olmalı', () => {
+    cy.get('[data-cy=controller-all]').should('be.selected');
   });
 });
