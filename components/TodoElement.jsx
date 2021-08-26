@@ -1,10 +1,16 @@
 import styled from 'styled-components';
 import { Checkbox, Button } from 'semantic-ui-react';
 
-function TodoElement({ label, isDone, ...props }) {
+function TodoElement({ label, isDone, onDelete, ...props }) {
   return (
     <ListItem data-cy="todo-element" {...props}>
-      <Button icon="trash" color="red" size="mini" data-cy="todo-trash-btn" />
+      <Button
+        icon="trash"
+        color="red"
+        size="mini"
+        data-cy="todo-delete-btn"
+        onClick={onDelete}
+      />
       <CustomCheckbox
         primary
         label={label}
