@@ -13,16 +13,19 @@ function Controllers() {
         label="Hepsi"
         checked={type === 'all'}
         onChange={() => setType('all')}
+        data-cy="controller-all"
       />
       <Radio
         label="Yapılacaklar"
         checked={type === 'todos'}
         onChange={() => setType('todos')}
+        data-cy="controller-todos"
       />
       <Radio
         label="Yapılmışlar"
         checked={type === 'completed'}
         onChange={() => setType('completed')}
+        data-cy="controller-completed"
       />
       <Button onClick={clearAll}>Temizle</Button>
     </StyledControllers>
