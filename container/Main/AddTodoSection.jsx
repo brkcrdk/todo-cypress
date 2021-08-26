@@ -7,22 +7,27 @@ function AddTodoSection() {
   const [todoVal, setTodoVal] = useState('');
   const { addTodo } = useStoreMacro();
 
+  const saveTodo = () => {
+    addTodo(todoVal);
+    setTodoVal('');
+  };
+
   return (
     <AddTodoContainer data-cy="add-todo-section">
       <CustomInput
         placeholder="Bir iş ekle..."
         value={todoVal}
+        data-cy="todo-input"
         onChange={(e) => setTodoVal(e.target.value)}
         onKeyPress={({ key }) => {
           if (key === 'Enter' && todoVal) {
-            addTodo(todoVal);
+            saveTodo();
           }
         }}
-        data-cy="todo-input"
       />
       <CustomButton
         primary
-        onClick={() => addTodo(todoVal)}
+        onClick={saveTodo}
         data-cy="todo-add-btn"
         disabled={!todoVal}
       >
