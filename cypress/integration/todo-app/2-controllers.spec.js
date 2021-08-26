@@ -9,6 +9,12 @@ describe('Eğer input boşsa todo kayıt edilememeli', () => {
   });
 
   it('Varsayılan seçili opsiyon hepsi olmalı', () => {
-    cy.get('[data-cy=controller-all]').should('be.selected');
+    cy.get('[data-cy=controller-all]').children('input').should('be.checked');
+  });
+
+  it('Temizle butonuna basınca tüm işler silinmeli', () => {
+    cy.get('[data-cy=controller-clear]').click();
+    cy.get('[data-cy=todo-container]').should('not.exist');
+    cy.get('[data-cy=empty-message]').should('exist');
   });
 });

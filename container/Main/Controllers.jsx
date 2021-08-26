@@ -27,7 +27,9 @@ function Controllers() {
         onChange={() => setType('completed')}
         data-cy="controller-completed"
       />
-      <Button onClick={clearAll}>Temizle</Button>
+      <Button onClick={clearAll} data-cy="controller-clear">
+        Temizle
+      </Button>
     </StyledControllers>
   );
 }
