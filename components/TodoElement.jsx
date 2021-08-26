@@ -3,9 +3,15 @@ import { Checkbox, Button } from 'semantic-ui-react';
 
 function TodoElement({ label, isDone, ...props }) {
   return (
-    <ListItem {...props}>
-      <Button icon="trash" color="red" size="mini" />
-      <CustomCheckbox primary label={label} isDone={isDone} checked={isDone} />
+    <ListItem data-cy="todo-element" {...props}>
+      <Button icon="trash" color="red" size="mini" data-cy="todo-trash-btn" />
+      <CustomCheckbox
+        primary
+        label={label}
+        isDone={isDone}
+        checked={isDone}
+        data-cy="todo-checkbox"
+      />
     </ListItem>
   );
 }
