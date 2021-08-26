@@ -9,6 +9,13 @@ const todoStore = (set, get) => {
       );
       set({ todos: filteredTodo });
     },
+    toggleTodo: (todoIndex) => {
+      const updatedTodo = get().todos.map((todo, index) => {
+        if (index === todoIndex) return { ...todo, isDone: !todo.isDone };
+        return todo;
+      });
+      set({ todos: updatedTodo });
+    },
   };
 };
 
