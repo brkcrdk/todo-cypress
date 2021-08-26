@@ -27,7 +27,7 @@ function Main() {
           {todos?.map((todo, index) => (
             <TodoElement
               key={`todo-${todo}`}
-              label={todo}
+              label={todo.task}
               onDelete={() => deleteTodo(index)}
             />
           ))}

@@ -8,7 +8,7 @@ function AddTodoSection() {
   const { addTodo } = useStoreMacro();
 
   const saveTodo = () => {
-    addTodo(todoVal);
+    addTodo({ task: todoVal, isDone: false });
     setTodoVal('');
   };
 
