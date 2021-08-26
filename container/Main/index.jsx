@@ -6,7 +6,7 @@ import AddTodoSection from './AddTodoSection';
 import Controllers from './Controllers';
 
 function Main() {
-  const { todos } = useStoreMacro();
+  const { todos, deleteTodo } = useStoreMacro();
 
   return (
     <Container>
@@ -24,8 +24,12 @@ function Main() {
         />
       ) : (
         <TodoContainer data-cy="todo-container">
-          {todos?.map((todo) => (
-            <TodoElement key={`todo-${todo}`} label={todo} />
+          {todos?.map((todo, index) => (
+            <TodoElement
+              key={`todo-${todo}`}
+              label={todo}
+              onDelete={() => deleteTodo(index)}
+            />
           ))}
         </TodoContainer>
       )}
