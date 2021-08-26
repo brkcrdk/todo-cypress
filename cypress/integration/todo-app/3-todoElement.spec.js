@@ -1,9 +1,20 @@
-describe('Todo Elementi', () => {
-  beforeEach(() => cy.visit('/'));
+const testTodos = ['İlk task', 'İkinci task', 'Üçüncü task', 'Dördüncü task'];
 
-  it('Elementin oluşması', () => {
-    const expectedText = 'enter deneme yazısı';
-    cy.get('[data-cy=todo-input]').type(`${expectedText}{enter}`);
-    cy.get('[data-cy=todo-element]').should('have.text', expectedText);
+describe('Todo Elementi', () => {
+  beforeEach(() => {
+    cy.visit('/');
+    testTodos.forEach((t) =>
+      cy.get('[data-cy=todo-input]').type(`${t}{enter}`)
+    );
+  });
+
+  it('Element başarılı bir şekilde silinmeli', () => {
+    cy.get('[data-cy=todo-delete-btn]').eq(2).click({ force: true });
+  });
+
+  it('Silinen elementin listede olmaması gerekli', () => {
+    cy.get('[data-cy=todo-element]').each((item) => {
+      cy.wrap(item).should('not.contain.text', testTodos[2]);
+    });
   });
 });
