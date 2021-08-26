@@ -6,7 +6,7 @@ import AddTodoSection from './AddTodoSection';
 import Controllers from './Controllers';
 
 function Main() {
-  const { todos, deleteTodo } = useStoreMacro();
+  const { todos, deleteTodo, toggleTodo } = useStoreMacro();
 
   return (
     <Container>
@@ -28,7 +28,9 @@ function Main() {
             <TodoElement
               key={`todo-${todo}`}
               label={todo.task}
+              isDone={todo.isDone}
               onDelete={() => deleteTodo(index)}
+              onToggle={() => toggleTodo(index)}
             />
           ))}
         </TodoContainer>
