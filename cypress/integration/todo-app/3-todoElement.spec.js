@@ -8,11 +8,8 @@ describe('Todo Elementi', () => {
     );
   });
 
-  it('Element başarılı bir şekilde silinmeli', () => {
+  it('Element başarılı bir şekilde silinmeli ve silinen elementin listede olmaması gerekli', () => {
     cy.get('[data-cy=todo-delete-btn]').eq(2).click({ force: true });
-  });
-
-  it('Silinen elementin listede olmaması gerekli', () => {
     cy.get('[data-cy=todo-element]').each((item) => {
       cy.wrap(item).should('not.contain.text', testTodos[2]);
     });
