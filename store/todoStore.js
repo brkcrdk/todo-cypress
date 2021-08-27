@@ -16,6 +16,17 @@ const todoStore = (set, get) => {
       });
       set({ todos: updatedTodo });
     },
+    filterTodo: (filterType) => {
+      if (filterType === 'all') return set({ todos: get().todos });
+      if (filterType === 'completed') {
+        const filteredTodo = get().todos.filter((todo) => todo.isDone);
+        return set({ todos: filteredTodo });
+      }
+      if (filterType === 'todos') {
+        const filteredTodo = get().todos.filter((todo) => !todo.isDone);
+        return set({ todos: filteredTodo });
+      }
+    },
   };
 };
 
