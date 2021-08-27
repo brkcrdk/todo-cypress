@@ -1,11 +1,9 @@
-import { useState } from 'react';
 import styled from 'styled-components';
 import { Button, Radio } from 'semantic-ui-react';
 import useStoreMacro from '@90pixel/zustand.macro';
 
-function Controllers() {
-  const { clearAll, filterTodo } = useStoreMacro();
-  const [type, setType] = useState('all');
+function Controllers({ type, setType }) {
+  const { clearAll } = useStoreMacro();
 
   return (
     <StyledControllers data-cy="todo-controllers">
@@ -14,7 +12,6 @@ function Controllers() {
         checked={type === 'all'}
         onChange={() => {
           setType('all');
-          filterTodo('all');
         }}
         data-cy="controller-all"
       />
@@ -23,7 +20,6 @@ function Controllers() {
         checked={type === 'todos'}
         onChange={() => {
           setType('todos');
-          filterTodo('todos');
         }}
         data-cy="controller-todos"
       />
@@ -32,7 +28,6 @@ function Controllers() {
         checked={type === 'completed'}
         onChange={() => {
           setType('completed');
-          filterTodo('completed');
         }}
         data-cy="controller-completed"
       />
