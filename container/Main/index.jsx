@@ -4,9 +4,24 @@ import { TodoContainer, TodoElement, Message } from 'components';
 import { Header } from 'semantic-ui-react';
 import AddTodoSection from './AddTodoSection';
 import Controllers from './Controllers';
+import { useState, useEffect } from 'react';
 
 function Main() {
   const { todos, deleteTodo, toggleTodo } = useStoreMacro();
+  const [filteredTodos, setFilteredTodos] = useState(todos);
+  const [type, setType] = useState('all');
+
+  useEffect(() => {
+    if (todos && type === 'all') setFilteredTodos(todos);
+    if (todos && type === 'completed') {
+      const completedTodos = todos.filter((todo) => todo.isDone);
+      return setFilteredTodos(completedTodos);
+    }
+    if (todos && type === 'todos') {
+      const uncompletedTodos = todos.filter((todo) => !todo.isDone);
+      return setFilteredTodos(uncompletedTodos);
+    }
+  }, [todos, type]);
 
   return (
     <Container>
@@ -14,7 +29,7 @@ function Main() {
         Yapılacak Listesi
       </Header>
       <AddTodoSection />
-      {!!todos.length && <Controllers />}
+      {!!todos.length && <Controllers type={type} setType={setType} />}
       {!todos?.length ? (
         <Message
           data-cy="empty-message"
@@ -24,7 +39,7 @@ function Main() {
         />
       ) : (
         <TodoContainer data-cy="todo-container">
-          {todos?.map((todo, index) => (
+          {filteredTodos?.map((todo, index) => (
             <TodoElement
               key={`todo-${todo}`}
               label={todo.task}
