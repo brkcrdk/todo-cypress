@@ -3,9 +3,10 @@ const testTodos = ['İlk task', 'İkinci task', 'Üçüncü task', 'Dördüncü 
 describe('Todo Elementi', () => {
   beforeEach(() => {
     cy.visit('/');
-    testTodos.forEach((t) =>
-      cy.get('[data-cy=todo-input]').type(`${t}{enter}`)
-    );
+    testTodos.forEach((t) => {
+      cy.get('[data-cy=todo-input]').type(t);
+      cy.get('[data-cy=todo-add-btn]').click();
+    });
   });
 
   it('Element başarılı bir şekilde silinmeli ve silinen elementin listede olmaması gerekli', () => {
