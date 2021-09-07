@@ -1,4 +1,4 @@
-describe('Todo uygulaması başarılı bir şekilde', () => {
+describe('Todo uygulaması başarılı bir şekilde çalışıyor.', () => {
   beforeEach(() => cy.visit('/'));
 
   it('Başarılı bir şekilde açılıp, boş liste ile gelmeli.', () => {
