@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "cypress": "cypress open",
-    "e2e": "cypress run --headless"
+    "e2e": "cypress run --headless",
+    "test": "start-server-and-test start http://localhost:3000 e2e"
   },
   "dependencies": {
     "next": "^11.1.0",
@@ -33,7 +34,8 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "prettier": "^2.3.2"
+    "prettier": "^2.3.2",
+    "start-server-and-test": "^1.14.0"
   },
   "babelMacros": {
     "zustandMacro": {
